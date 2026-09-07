@@ -6,14 +6,14 @@ import pandas as pd
 # ==========================================
 
 def obtener_conexion():
-    """Establece y devuelve la conexión a MySQL."""
+    """Establece y devuelve la conexión a MySQL usando Aiven Cloud."""
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Elmerj8421189*",
-        database="app_uber"
+        host=st.secrets["DB_HOST"],
+        user=st.secrets["DB_USER"],
+        password=st.secrets["DB_PASSWORD"],
+        database=st.secrets["DB_NAME"],
+        port=int(st.secrets["DB_PORT"])
     )
-
 def guardar_reporte_manual(id_estacion, tipo_combustible, precio):
     """Guarda el precio ingresado manualmente en la base de datos."""
     try:
